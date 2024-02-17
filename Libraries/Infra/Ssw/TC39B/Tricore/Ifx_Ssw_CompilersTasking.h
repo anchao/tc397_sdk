@@ -103,7 +103,7 @@
 #ifdef __cplusplus
 #define IFX_SSW_INLINE   static inline
 #else
-#define IFX_SSW_INLINE   inline
+#define IFX_SSW_INLINE   static inline
 #endif
 
 #define IFX_SSW_NULL_PTR ((void *)0x0U)

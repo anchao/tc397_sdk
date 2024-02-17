@@ -1,0 +1,77 @@
+############################################################################
+# arch/tricore/src/tc3xx/tc397/Make.defs
+#
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.  The
+# ASF licenses this file to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance with the
+# License.  You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
+# License for the specific language governing permissions and limitations
+# under the License.
+#
+############################################################################
+
+include common/Make.defs
+
+SDK_INCDIR += Configurations
+SDK_INCDIR += Configurations/Ssw
+SDK_INCDIR += Libraries/iLLD/TC39B/Tricore
+SDK_INCDIR += Libraries/iLLD/TC39B/Tricore/Cpu/Std
+SDK_INCDIR += Libraries/iLLD/TC39B/Tricore/Pms/Std
+SDK_INCDIR += Libraries/iLLD/TC39B/Tricore/Stm/Std
+SDK_INCDIR += Libraries/iLLD/TC39B/Tricore/Scu/Std
+SDK_INCDIR += Libraries/iLLD/TC39B/Tricore/Src/Std
+SDK_INCDIR += Libraries/iLLD/TC39B/Tricore/Stm/Timer
+SDK_INCDIR += Libraries/iLLD/TC39B/Tricore/Cpu/Trap
+SDK_INCDIR += Libraries/Infra/Platform
+SDK_INCDIR += Libraries/Infra/Sfr/TC39B/_Reg
+SDK_INCDIR += Libraries/Infra/Ssw/TC39B/Tricore
+SDK_INCDIR += Libraries/Service/CpuGeneric
+
+SDK_CSRCS += Configurations/Ifx_Cfg_Ssw.c
+SDK_CSRCS += Libraries/iLLD/TC39B/Tricore/Asclin/Std/IfxAsclin.c
+SDK_CSRCS += Libraries/iLLD/TC39B/Tricore/Cpu/Std/IfxCpu.c
+SDK_CSRCS += Libraries/iLLD/TC39B/Tricore/Cpu/Trap/IfxCpu_Trap.c
+SDK_CSRCS += Libraries/iLLD/TC39B/Tricore/_Impl/IfxAsclin_cfg.c
+SDK_CSRCS += Libraries/iLLD/TC39B/Tricore/_Impl/IfxCif_cfg.c
+SDK_CSRCS += Libraries/iLLD/TC39B/Tricore/_Impl/IfxCpu_cfg.c
+SDK_CSRCS += Libraries/iLLD/TC39B/Tricore/_Impl/IfxPort_cfg.c
+SDK_CSRCS += Libraries/iLLD/TC39B/Tricore/_Impl/IfxStm_cfg.c
+SDK_CSRCS += Libraries/iLLD/TC39B/Tricore/_PinMap/IfxAsclin_PinMap.c
+SDK_CSRCS += Libraries/iLLD/TC39B/Tricore/Pms/Std/IfxPmsEvr.c
+SDK_CSRCS += Libraries/iLLD/TC39B/Tricore/Pms/Std/IfxPmsPm.c
+SDK_CSRCS += Libraries/iLLD/TC39B/Tricore/Port/Std/IfxPort.c
+SDK_CSRCS += Libraries/iLLD/TC39B/Tricore/Scu/Std/IfxScuCcu.c
+SDK_CSRCS += Libraries/iLLD/TC39B/Tricore/Scu/Std/IfxScuEru.c
+SDK_CSRCS += Libraries/iLLD/TC39B/Tricore/Scu/Std/IfxScuLbist.c
+SDK_CSRCS += Libraries/iLLD/TC39B/Tricore/Scu/Std/IfxScuRcu.c
+SDK_CSRCS += Libraries/iLLD/TC39B/Tricore/Scu/Std/IfxScuWdt.c
+SDK_CSRCS += Libraries/iLLD/TC39B/Tricore/Src/Std/IfxSrc.c
+SDK_CSRCS += Libraries/iLLD/TC39B/Tricore/Stm/Std/IfxStm.c
+SDK_CSRCS += Libraries/Infra/Platform/Tricore/Compilers/CompilerTasking.c
+SDK_CSRCS += Libraries/Infra/Ssw/TC39B/Tricore/Ifx_Ssw_Infra.c
+
+SDK_CSRCS += Libraries/Infra/Ssw/TC39B/Tricore/Ifx_Ssw_Tc0.c
+SDK_CSRCS += Libraries/Infra/Ssw/TC39B/Tricore/Ifx_Ssw_Tc1.c
+SDK_CSRCS += Libraries/Infra/Ssw/TC39B/Tricore/Ifx_Ssw_Tc2.c
+SDK_CSRCS += Libraries/Infra/Ssw/TC39B/Tricore/Ifx_Ssw_Tc3.c
+SDK_CSRCS += Libraries/Infra/Ssw/TC39B/Tricore/Ifx_Ssw_Tc4.c
+SDK_CSRCS += Libraries/Infra/Ssw/TC39B/Tricore/Ifx_Ssw_Tc5.c
+
+CFLAGS += $(addprefix ${INCDIR_PREFIX}tc3xx/tc397/,$(SDK_INCDIR))
+SDK_CSRCS := $(addprefix tc3xx/tc397/,$(SDK_CSRCS))
+
+VPATH += tc3xx/tc397
+VPATH += $(dir $(SDK_CSRCS))
+
+HEAD_CSRC += $(notdir $(SDK_CSRCS))
+
+EXTRA_LIBS += tc3xx/tc397/SW160800-v6.3r1/TriCore/ctc/lib/tc162/cinit.o
+LIBPATHS   += $(CURDIR)
