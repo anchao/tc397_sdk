@@ -73,5 +73,7 @@ VPATH += $(dir $(SDK_CSRCS))
 
 HEAD_CSRC += $(notdir $(SDK_CSRCS))
 
-EXTRA_LIBS += tc3xx/tc397/SW160800-v6.3r1/TriCore/ctc/lib/tc162/cinit.o
+ifeq ($(CONFIG_TRICORE_TOOLCHAIN_TASKING),y)
+  EXTRA_LIBS += tc3xx/tc397/SW160800-v6.3r1/TriCore/ctc/lib/tc162/cinit.o
+endif
 LIBPATHS   += $(CURDIR)
