@@ -68,4 +68,9 @@ set(SDK_CSRCS
     ${CMAKE_CURRENT_LIST_DIR}/Libraries/Infra/Ssw/TC39B/Tricore/Ifx_Ssw_Tc5.c)
 
 target_sources(nuttx PRIVATE ${SDK_CSRCS})
-target_link_options(nuttx PRIVATE -Xlinker -nostdlib)
+
+if(NOT CONFIG_TRICORE_TOOLCHAIN_TASKING)
+  target_link_options(nuttx PRIVATE -Xlinker -nostdlib)
+else()
+  nuttx_add_extra_library(${CMAKE_CURRENT_LIST_DIR}/SW160800-v6.3r1/TriCore/ctc/lib/tc162/cinit.o)
+endif()
